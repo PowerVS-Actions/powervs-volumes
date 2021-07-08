@@ -106,7 +106,6 @@ function get_volumes(){
             fi
         done < "$JSON"
     done
-    cat ./all-volumes.csv
 }
 
 function run() {
@@ -117,7 +116,7 @@ function run() {
 		ACCOUNTS+=("$clean_line")
 	done < ./cloud_accounts
 
-    rm -f "$(pwd)"/all-crns*
+        rm -f "$(pwd)"/all-crns*
 
 	for i in "${ACCOUNTS[@]}"; do
 		IBMCLOUD=$(echo "$i" | awk -F "," '{print $1}')
@@ -136,9 +135,10 @@ function run() {
 			check_connectivity
 			authenticate "$API_KEY"
 			get_all_services "$IBMCLOUD_ID"
-            get_volumes "$IBMCLOUD_ID" "$IBMCLOUD_NAME"
+            		get_volumes "$IBMCLOUD_ID" "$IBMCLOUD_NAME"
 		fi
 	done
+	awk 'NF' ./all-volumes.csv
 }
 
 run "$@"
