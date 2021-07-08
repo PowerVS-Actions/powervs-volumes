@@ -105,8 +105,8 @@ function get_volumes(){
                 echo "$VOLUME,$2,$1,$PVS_ZONE,$TIER,$SIZE" >> "$(pwd)"/all-volumes.csv
             fi
         done < "$JSON"
-        cat ./all-volumes.csv
     done
+    cat ./all-volumes.csv
 }
 
 function run() {
