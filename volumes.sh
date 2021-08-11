@@ -52,6 +52,8 @@ function authenticate() {
         echo "API KEY was not set."
         exit
     fi
+    ibmcloud update -f
+    ibmcloud plugin update --all
     ibmcloud login --no-region --apikey "$APY_KEY" > /dev/null 2>&1
 }
 
